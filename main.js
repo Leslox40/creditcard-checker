@@ -50,7 +50,6 @@ const validateCred = array => {
   const sum = doubledArray.reduce((acc, val) => {
       return acc + val;
   });
-  console.log(sum);
 
   if (sum % 10 === 0) {
       return true;
@@ -59,9 +58,19 @@ const validateCred = array => {
   return false;
 };
 
-console.log(validateCred(valid1));
-console.log(validateCred(valid2));
-console.log(validateCred(invalid1));
+//function to find invalid cards from nested array
+
+const findInvalidCard = (array) => {
+  const invalidCards = array.filter(card => {
+    //if validateCred() function returns false the credit card is returned
+     return !validateCred(card);
+  });
+
+  console.log(invalidCards);
+  return invalidCards;
+};
+
+findInvalidCard(batch);
 
 
 
