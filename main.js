@@ -25,14 +25,44 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 // Add your functions below:
 
+//implementing Luhn's Algorithm
 const validateCred = array => {
-    const checkDigit = array[array.length-1];
-    const reversedArray = array.reverse();
-  
-    const multipliedArray = reversedArray.map(number => {
-      nu
-    })
+  const checkDigit = array[array.length-1];
+  const reversedArray = array.reverse();
+
+
+  //loop to multiply numbers in odd positions
+  for (let i = 1; i <= reversedArray.length-1; i += 2) {
+      let multiple = reversedArray[i] * 2;
+      
+      reversedArray[i] = multiple;
+
+      if(multiple > 9) {
+          multiple = multiple - 9;
+      }
+
+      //new array with numbers doubled and substracted
+      reversedArray[i] = multiple;
   }
+  const doubledArray = reversedArray;
+
+  //summing all numbers in array
+  const sum = doubledArray.reduce((acc, val) => {
+      return acc + val;
+  });
+  console.log(sum);
+
+  if (sum % 10 === 0) {
+      return true;
+  }
+
+  return false;
+};
+
+console.log(validateCred(valid1));
+console.log(validateCred(valid2));
+console.log(validateCred(invalid1));
+
 
 
 
