@@ -66,11 +66,40 @@ const findInvalidCard = (array) => {
      return !validateCred(card);
   });
 
-  console.log(invalidCards);
   return invalidCards;
 };
 
-findInvalidCard(batch);
+const idInvalidCardCompanies = (array) => {
+  const invalidCardCompanies = [];
+  let company;
+
+  array.forEach(card => {
+    let firstDigit = card[0];
+
+    switch(firstDigit) {
+      case 3:
+        company = 'Amex';
+        break;
+      case 4:
+        company = 'Visa';
+        break;
+      case 5:
+        company = 'Mastercard';
+        break;
+      case 6:
+        company = 'Discover';
+        break;
+    }
+
+    if (invalidCardCompanies.indexOf(company) === -1) {
+      invalidCardCompanies.push(company);
+    }
+  });
+}
+
+const invalidcards = findInvalidCard(batch);
+idInvalidCardCompanies(invalidcards);
+
 
 
 
